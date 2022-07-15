@@ -98,12 +98,12 @@ namespace JRGSlideShowWPF
             InitVars();                       
             LoadSettings();
             NotifyStart();
-            await InitSlideShow();
-            EnableMotdCode();
+            await InitSlideShow();            
             Starting = false;
             await DisplayGetNextImageWithoutCheck(1);
             Play(true);
             MouseInitTimer();
+            EnableMotd();
         }
         
         public bool ShowPicture = false;
@@ -207,7 +207,7 @@ namespace JRGSlideShowWPF
             ShowMotd = MotdXaml.IsChecked;
             if (MotdXaml.IsChecked == true)
             {
-                EnableMotdCode();               
+                EnableMotd();               
             }
             else
             {

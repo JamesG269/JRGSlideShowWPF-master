@@ -11,7 +11,7 @@ namespace JRGSlideShowWPF
 {
     public partial class MainWindow : Window
     {
-        private void EnableMotdCode()
+        private void EnableMotd()
         {
             if (Starting)
             {
