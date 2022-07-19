@@ -121,22 +121,18 @@ namespace JRGSlideShowWPF
             }
             else
             {
-                SetDisplayMode();                
                 dispatcherPlaying.Start();
+                SetDisplayMode();                                
             }
         }
         int LastDisplayMode = 0;
         
         private void SetDisplayMode()
         {
-            if (AllowMonitorSleepFullScreenOnly == false)
+            if (AllowMonitorSleepFullScreenOnly == false || (AllowMonitorSleepFullScreenOnly == true && isMaximized == true))
             {
                 SetDisplayModeCheckPlay();
-            }
-            else if (isMaximized == true)
-            {
-                SetDisplayModeCheckPlay();
-            }
+            }            
             else
             {
                 SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);

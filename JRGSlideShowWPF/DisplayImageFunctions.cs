@@ -50,8 +50,10 @@ namespace JRGSlideShowWPF
         {
             if (ImageListReady == true)
             {
+                dispatcherPlaying.Stop();
                 await Task.Run(() => LoadNextImage(i));
                 await DisplayCurrentImage();
+                dispatcherPlaying.Start();
             }
         }
 
