@@ -46,7 +46,7 @@ namespace JRGSlideShowWPF
             }
             else
             {
-                await Task.Run(() => StartGetFiles());
+                await Task.Run(() => StartGetFiles());                
             }            
         }
         public void InitMotd()

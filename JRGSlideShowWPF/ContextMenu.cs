@@ -82,7 +82,8 @@ namespace JRGSlideShowWPF
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 SlideShowDirectory = dialog.SelectedPath;
-                await Task.Run(() => StartGetFilesNoInterlock());              
+                await Task.Run(() => StartGetFilesNoInterlock());
+                await DisplayGetNextImageWithoutCheck(1);
             }
             return;
         }

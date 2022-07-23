@@ -50,10 +50,9 @@ namespace JRGSlideShowWPF
         {
             if (ImageListReady == true)
             {
-                dispatcherPlaying.Stop();
+                
                 await Task.Run(() => LoadNextImage(i));
-                await DisplayCurrentImage();
-                dispatcherPlaying.Start();
+                await DisplayCurrentImage();                
             }
         }
 
@@ -89,8 +88,14 @@ namespace JRGSlideShowWPF
         {
             if (ImageReadyToDisplay == true)
             {
-                if (ImageError == false)
+                bool dispatcherPlayingEnabled = false;
+                if (dispatcherPlaying.IsEnabled)
                 {
+                    dispatcherPlayingEnabled = true;
+                    dispatcherPlaying.Stop();
+                }
+                if (ImageError == false)
+                {                    
                     ImageIdxListDeletePtr = -1;
                     ImageControl.Source = displayPhoto;
                     imageTimeToDecode.Stop();
@@ -98,7 +103,7 @@ namespace JRGSlideShowWPF
                     ImageReadyToDisplay = false;
                     imagesDisplayed++;
                     updateInfo();
-                    PutMotd();
+                    PutMotd();                    
                 }
                 else
                 {
@@ -107,6 +112,10 @@ namespace JRGSlideShowWPF
                     {
                         //await DeleteNoInterlock(true);
                     }
+                }
+                if (dispatcherPlayingEnabled)
+                {
+                    dispatcherPlaying.Start();
                 }
             }
 
