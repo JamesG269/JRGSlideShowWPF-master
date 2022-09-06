@@ -88,10 +88,9 @@ namespace JRGSlideShowWPF
         {
             if (ImageReadyToDisplay == true)
             {
-                bool dispatcherPlayingEnabled = false;
-                if (dispatcherPlaying.IsEnabled)
-                {
-                    dispatcherPlayingEnabled = true;
+                bool dispatcherPlayingEnabled = dispatcherPlaying.IsEnabled;
+                if (dispatcherPlayingEnabled)
+                {                    
                     dispatcherPlaying.Stop();
                 }
                 if (ImageError == false)
@@ -108,9 +107,11 @@ namespace JRGSlideShowWPF
                 else
                 {
                     InfoTextBoxClass.messageDisplayStart(ErrorMessage, 5, false, false);
+                    
                     if (IsUserjgentile)                                                         // delete the picture if it has display errors *and* user is the author
                     {
                         //await DeleteNoInterlock(true);
+                        await Task.Delay(1);
                     }
                 }
                 if (dispatcherPlayingEnabled)

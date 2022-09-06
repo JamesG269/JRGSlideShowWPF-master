@@ -23,7 +23,7 @@ namespace JRGSlideShowWPF
                 await DisplayFileInfo();
                 Interlocked.Exchange(ref OneInt, 0);
             }
-            else if (e.Key == Key.Delete || e.Key == Key.D)
+            else if (e.Key == Key.Delete)
             {
                 while (0 != Interlocked.Exchange(ref OneInt, 1))
                 {

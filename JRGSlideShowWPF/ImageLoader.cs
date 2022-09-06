@@ -13,11 +13,7 @@ namespace JRGSlideShowWPF
     public partial class MainWindow : Window
     {
         FileInfo[] ImageList;
-
-        
-
         int[] ImageIdxList;
-
         Boolean ImageListReady = false;
 
         int ImageIdxListPtr = 0;
@@ -116,6 +112,7 @@ namespace JRGSlideShowWPF
             do
             {
                 string currentDir = dirs.Pop();
+                InfoTextBoxClass.messageDisplayStart("Scanning directories..." + currentDir + Environment.NewLine + "Images found: " + NewImageList.Count, -1, true, false);
                 try
                 {
                     string[] subDirs = Directory.GetDirectories(currentDir);
@@ -142,7 +139,7 @@ namespace JRGSlideShowWPF
                         if (NextListUpdate > 100)
                         {
                             NextListUpdate = 0;
-                            InfoTextBoxClass.messageDisplayStart("Scanning directories... Images found: " + NewImageList.Count, -1, true, false);                            
+                            InfoTextBoxClass.messageDisplayStart("Scanning directories..." + currentDir + Environment.NewLine + "Images found: " + NewImageList.Count, -1, true, false);
                         }
                     }
                 }

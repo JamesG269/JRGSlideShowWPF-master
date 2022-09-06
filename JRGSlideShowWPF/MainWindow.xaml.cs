@@ -171,10 +171,7 @@ namespace JRGSlideShowWPF
             {
                 await Task.Delay(10);
             }
-            if (Starting == false)
-            {
-                SaveSettings();
-            }                        
+            SaveSettings();
             base.OnClosing(e);
         }
 
@@ -210,22 +207,5 @@ namespace JRGSlideShowWPF
                 MotdClass.messageDisplayEndUninterruptable(new Action(() => { MotdClass.textBlock.Visibility = Visibility.Hidden; }));
             }
         }
-
-        private async void DisplayInfo_Checked(object sender, RoutedEventArgs e)
-        {
-            if (displayingInfo == false)
-            {
-                await DisplayFileInfo();
-            }
-        }
-
-        private async void DisplayInfo_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (displayingInfo == true)
-            {
-                await DisplayFileInfo();
-            }
-        }
-
     }
 }

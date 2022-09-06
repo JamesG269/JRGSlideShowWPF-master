@@ -21,21 +21,25 @@
     </WindowChrome.WindowChrome>
 
     <Grid Name="Grid1" Background="black" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="341*"/>
+        </Grid.RowDefinitions>
 
-        <Image Height="auto" Margin="0,0,0,0"  Width="auto" Name="ImageControl" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
-        <TextBlock Name="InfoBlockControl" Text="" Width="auto" Height="auto" Margin="10,0,0,0" Foreground="white" Visibility="Hidden" FontSize="20" FontFamily="consolas">
+        <Image Height="auto"  Width="auto" Name="ImageControl" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" Grid.RowSpan="2"/>
+        <TextBlock Name="InfoBlockControl" Text="" Width="auto" Height="auto" Margin="10,0,0,0" Foreground="white" Visibility="Hidden" FontSize="20" FontFamily="consolas" Grid.RowSpan="2">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBlock Name="MotdBlockControl" Text="" Width="auto" Height="auto" Margin="10,50,10,69" Foreground="LightGreen" Visibility="Hidden" FontSize="40" FontFamily="consolas">
+        <TextBlock Name="MotdBlockControl" Text="" Width="auto" Height="auto" Margin="10,31,10,69" Foreground="LightGreen" Visibility="Hidden" FontSize="40" FontFamily="consolas" Grid.Row="1">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black"/>
             </TextBlock.Effect>
         </TextBlock>
-        <ProgressBar Name="progressBar" HorizontalAlignment="Left" Height="16" Margin="10,26,0,0" VerticalAlignment="Top" Width="151" Minimum="0" Maximum="100" Visibility="Hidden"/>
+        <ProgressBar Name="progressBar" HorizontalAlignment="Left" Height="16" Margin="10,7,0,0" VerticalAlignment="Top" Width="151" Minimum="0" Maximum="100" Visibility="Hidden" Grid.Row="1"/>
         <Grid.ContextMenu>
-            <ContextMenu Opened="ContextMenu_Opened" Closed="ContextMenu_Closed">
+            <ContextMenu Opened="ContextMenu_Opened">
                 <MenuItem Header="Play" Click="ContextMenuPlay" Name="PlayXaml"/>
                 <MenuItem Header="Next" Click="ContextMenuNext"/>
                 <MenuItem Header="Previous" Click="ContextMenuPrev"/>
@@ -53,7 +57,7 @@
                 <MenuItem Header="Allow Monitor sleep while playing." IsCheckable="True" Unchecked="AllowMonitorSleepPlaying_Checked" Checked="AllowMonitorSleepPlaying_Checked" Name="AllowSleepPlayingXaml"/>
                 <MenuItem Header="Allow Monitor sleep while paused." IsCheckable="True" Unchecked="AllowMonitorSleepPaused_Checked" Checked="AllowMonitorSleepPaused_Checked" Name="AllowSleepPausedXaml"/>
                 <MenuItem Header="Allow Monitor sleep in full screen only" IsCheckable="True" Unchecked="AllowMonitorSleepFullScreenOnly_Checked" Checked="AllowMonitorSleepFullScreenOnly_Checked" Name="AllowSleepFullScreenXaml"/>
-                
+
 
                 <MenuItem Header="Enable MOTD" IsCheckable="True" Unchecked="EnableMotd" Checked="EnableMotd" Name="MotdXaml"/>
                 <MenuItem Header="Exit" Click="ContextMenuExit"/>

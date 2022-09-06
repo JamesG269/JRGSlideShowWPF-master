@@ -6,7 +6,6 @@ namespace JRGSlideShowWPF
 {
     public partial class MainWindow : Window
     {
-        string[] motd = new string[] {};
 
         public void LoadSettings()
         {
@@ -50,6 +49,10 @@ namespace JRGSlideShowWPF
         }
         public void SaveSettings()
         {
+            if (Starting)
+            {
+                return;
+            }
             Properties.Settings.Default.isMaximized = isMaximized;
             Properties.Settings.Default.Randomize = RandomizeImages;
             if (PrivateModeCheckBox.IsChecked == false)
