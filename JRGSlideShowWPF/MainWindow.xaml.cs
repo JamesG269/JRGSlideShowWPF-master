@@ -31,14 +31,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using SharpCaster.Models;
 using System.Collections.ObjectModel;
-using SharpCaster.Services;
-using SharpCaster.Controllers;
-using SharpCaster.Models.ChromecastRequests;
-using GoogleCast.Models.Media;
-using GoogleCast.Channels;
-using GoogleCast;
+
 
 namespace JRGSlideShowWPF
 {
@@ -121,41 +115,9 @@ namespace JRGSlideShowWPF
             }
             else
             {
-                dispatcherPlaying.Start();
-                SetDisplayMode();                                
+                dispatcherPlaying.Start();                                               
             }
-        }
-        int LastDisplayMode = 0;
-        
-        private void SetDisplayMode()
-        {
-            if (AllowMonitorSleepFullScreenOnly == false || (AllowMonitorSleepFullScreenOnly == true && isMaximized == true))
-            {
-                SetDisplayModeCheckPlay();
-            }            
-            else
-            {
-                SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
-                LastDisplayMode = 1;
-            }
-            updateInfo();
-        }
-        private void SetDisplayModeCheckPlay()
-        {
-            if (AllowMonitorSleepPlaying && dispatcherPlaying.IsEnabled)
-            {
-                SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
-                LastDisplayMode = 0;
-                return;
-            }
-            else if (AllowMonitorSleepPaused && !dispatcherPlaying.IsEnabled)
-            {
-                SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
-                LastDisplayMode = 0;
-                return;
-            }
-            SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
-            LastDisplayMode = 1;
+            SetDisplayMode();
         }
         
         protected override async void OnClosing(CancelEventArgs e)
@@ -175,26 +137,6 @@ namespace JRGSlideShowWPF
             base.OnClosing(e);
         }
 
-        bool AllowMonitorSleepPlaying = false;
-        bool AllowMonitorSleepPaused = true;
-        bool AllowMonitorSleepFullScreenOnly = false;
-        private void AllowMonitorSleepPlaying_Checked(object sender, RoutedEventArgs e)
-        {
-            AllowMonitorSleepPlaying = AllowSleepPlayingXaml.IsChecked;
-            SetDisplayMode();
-        }
-
-        private void AllowMonitorSleepPaused_Checked(object sender, RoutedEventArgs e)
-        {
-            AllowMonitorSleepPaused = AllowSleepPausedXaml.IsChecked;
-            SetDisplayMode();
-        }
-
-        private void AllowMonitorSleepFullScreenOnly_Checked(object sender, RoutedEventArgs e)
-        {
-            AllowMonitorSleepFullScreenOnly = AllowSleepFullScreenXaml.IsChecked;
-            SetDisplayMode();
-        }
         private void EnableMotd(object sender, RoutedEventArgs e)
         {
             ShowMotd = MotdXaml.IsChecked;

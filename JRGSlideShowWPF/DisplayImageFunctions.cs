@@ -13,14 +13,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using SharpCaster.Models;
 using System.Collections.ObjectModel;
-using SharpCaster.Services;
-using SharpCaster.Controllers;
-using SharpCaster.Models.ChromecastRequests;
-using GoogleCast.Models.Media;
-using GoogleCast.Channels;
-using GoogleCast;
+
 
 namespace JRGSlideShowWPF
 {
@@ -31,7 +25,7 @@ namespace JRGSlideShowWPF
             if (Interlocked.Exchange(ref OneInt, 1) == 1)
             {
                 return;
-            }            
+            }
             await DisplayGetNextImageWithoutCheck(1);
             OneInt = 0;
         }
@@ -50,9 +44,9 @@ namespace JRGSlideShowWPF
         {
             if (ImageListReady == true)
             {
-                
+
                 await Task.Run(() => LoadNextImage(i));
-                await DisplayCurrentImage();                
+                await DisplayCurrentImage();
             }
         }
 
@@ -90,11 +84,11 @@ namespace JRGSlideShowWPF
             {
                 bool dispatcherPlayingEnabled = dispatcherPlaying.IsEnabled;
                 if (dispatcherPlayingEnabled)
-                {                    
+                {
                     dispatcherPlaying.Stop();
                 }
                 if (ImageError == false)
-                {                    
+                {
                     ImageIdxListDeletePtr = -1;
                     ImageControl.Source = displayPhoto;
                     imageTimeToDecode.Stop();
@@ -102,12 +96,12 @@ namespace JRGSlideShowWPF
                     ImageReadyToDisplay = false;
                     imagesDisplayed++;
                     updateInfo();
-                    PutMotd();                    
+                    PutMotd();
                 }
                 else
                 {
                     InfoTextBoxClass.messageDisplayStart(ErrorMessage, 5, false, false);
-                    
+
                     if (IsUserjgentile)                                                         // delete the picture if it has display errors *and* user is the author
                     {
                         //await DeleteNoInterlock(true);
@@ -119,7 +113,39 @@ namespace JRGSlideShowWPF
                     dispatcherPlaying.Start();
                 }
             }
-
         }
+        int LastDisplayMode = 0;
+
+        private void SetDisplayMode()
+        {
+            if (AllowMonitorSleepFullScreenOnly == false || (AllowMonitorSleepFullScreenOnly == true && isMaximized == true))
+            {
+                SetDisplayModeCheckPlay();
+            }
+            else
+            {
+                SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
+                LastDisplayMode = 1;
+            }
+            updateInfo();
+        }
+        private void SetDisplayModeCheckPlay()
+        {
+            if (AllowMonitorSleepPlaying && dispatcherPlaying.IsEnabled)
+            {
+                SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
+                LastDisplayMode = 0;
+                return;
+            }
+            else if (AllowMonitorSleepPaused && !dispatcherPlaying.IsEnabled)
+            {
+                SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
+                LastDisplayMode = 0;
+                return;
+            }
+            SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS);
+            LastDisplayMode = 1;
+        }
+
     }
 }

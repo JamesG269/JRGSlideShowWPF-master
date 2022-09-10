@@ -242,5 +242,25 @@ namespace JRGSlideShowWPF
                 await DisplayFileInfo();
             }
         }
+        bool AllowMonitorSleepPlaying = false;
+        bool AllowMonitorSleepPaused = true;
+        bool AllowMonitorSleepFullScreenOnly = false;
+        private void AllowMonitorSleepPlaying_Checked(object sender, RoutedEventArgs e)
+        {
+            AllowMonitorSleepPlaying = AllowSleepPlayingXaml.IsChecked;
+            SetDisplayMode();
+        }
+
+        private void AllowMonitorSleepPaused_Checked(object sender, RoutedEventArgs e)
+        {
+            AllowMonitorSleepPaused = AllowSleepPausedXaml.IsChecked;
+            SetDisplayMode();
+        }
+
+        private void AllowMonitorSleepFullScreenOnly_Checked(object sender, RoutedEventArgs e)
+        {
+            AllowMonitorSleepFullScreenOnly = AllowSleepFullScreenXaml.IsChecked;
+            SetDisplayMode();
+        }
     }
 }
