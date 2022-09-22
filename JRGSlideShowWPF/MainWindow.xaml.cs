@@ -49,7 +49,7 @@ namespace JRGSlideShowWPF
             ES_SYSTEM_REQUIRED = 0x00000001
         }
 
-        const string version = "2.0";
+        const string version = "3.0";
 
         public System.Windows.Threading.DispatcherTimer dispatcherPlaying;
         public System.Windows.Threading.DispatcherTimer dispatcherHideCursor;
