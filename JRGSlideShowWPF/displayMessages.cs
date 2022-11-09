@@ -67,7 +67,7 @@ namespace JRGSlideShowWPF
                 textBoxStackNew.interruptable = Interruptable;
                 textBoxStackNew.highPriority = highPriority;
                 textBoxStackNew.live = true;
-                if (textBoxStackNew.highPriority == false && (textBoxStackCurrent.live == true && dispatchTimer.IsEnabled == true && textBoxStackCurrent.interruptable == false))
+                if (textBoxStackNew.highPriority == false && (textBoxStackCurrent.live == true && (dispatchTimer.IsEnabled == true || textBoxStackCurrent.time == -1) && textBoxStackCurrent.interruptable == false))
                 {
                     textBoxStackList.Push(textBoxStackNew);
                     InterlockInt = 0;

@@ -13,7 +13,7 @@ Double click window - maximize or de-maximize.
 Right click window - options such as open folder, randomize/sequential play, change timer, etc.
 Mouse wheel up/down - scroll through picture list.
 Screen will not sleep if the app is full screen.
-Dedicated to Caroline Bejoc from Sigonella and Marcy Magee from Swansboro NC.
+Dedicated to Caroline Bejoc from Sigonella.
 */
 
 using System;
