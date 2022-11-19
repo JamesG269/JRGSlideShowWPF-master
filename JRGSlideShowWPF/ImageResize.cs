@@ -49,11 +49,7 @@ namespace JRGSlideShowWPF
                 
                 DisplayedMessage = false;
                 ErrorMessage = "Resize Error.";
-                FileInfo fileInfo = ImageList[ImageIdxList[ImageIdxListPtr]];
-                if (fileInfo.Name.Contains("Chinese"))
-                {
-                    Debugger.Break();
-                }
+                FileInfo fileInfo = ImageList[ImageIdxList[ImageIdxListPtr]];                
                 decoder = null;
                 
                 if (fileInfo.Length > 20000000)

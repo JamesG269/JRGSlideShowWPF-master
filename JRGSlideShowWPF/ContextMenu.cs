@@ -95,7 +95,10 @@ namespace JRGSlideShowWPF
             await Task.Run(() => BenchMarkWorker());
             benchmarkRunning = 0;
             OneInt = 0;
-            dispatcherPlaying.IsEnabled = ShowPictureBackup;
+            if (ShowPictureBackup)
+            {
+                Play();
+            }
         }
 
         

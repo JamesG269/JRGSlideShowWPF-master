@@ -66,13 +66,14 @@ namespace JRGSlideShowWPF
                 textBoxStackNew.time = seconds;
                 textBoxStackNew.interruptable = Interruptable;
                 textBoxStackNew.highPriority = highPriority;
-                textBoxStackNew.live = true;
+                textBoxStackNew.live = true;                
                 if (textBoxStackNew.highPriority == false && (textBoxStackCurrent.live == true && (dispatchTimer.IsEnabled == true || textBoxStackCurrent.time == -1) && textBoxStackCurrent.interruptable == false))
                 {
                     textBoxStackList.Push(textBoxStackNew);
                     InterlockInt = 0;
                     return;
                 }
+                dispatchTimer.Stop();
                 textBoxStackCurrent = textBoxStackNew;
                 DispatcherWait(new Action(() => {
                     textBlock.Visibility = Visibility.Visible;
@@ -81,13 +82,11 @@ namespace JRGSlideShowWPF
                 if (seconds == -1)
                 {
                     return;
-                }
-                dispatchTimer.Stop();
+                }                
                 dispatchTimer.Interval = new TimeSpan(0, 0, 0, seconds, 0);
                 dispatchTimer.Tick -= messageDisplayEnd;
                 dispatchTimer.Tick += messageDisplayEnd;
                 dispatchTimer.Start();
-                return;
             }
         }
     }

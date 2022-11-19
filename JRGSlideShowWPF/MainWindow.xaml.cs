@@ -95,9 +95,9 @@ namespace JRGSlideShowWPF
             await InitSlideShow();            
             Starting = false;
             await DisplayGetNextImageWithoutCheck(1);
-            Play(true);
-            MouseInitTimer();
             EnableMotd();
+            Play(true);
+            MouseInitTimer();            
         }
         
         public bool ShowPicture = false;
