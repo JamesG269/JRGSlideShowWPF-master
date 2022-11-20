@@ -22,12 +22,7 @@ namespace JRGSlideShowWPF
     {
         private async void DisplayNextImageTimer(object sender, EventArgs e)
         {
-            if (Interlocked.Exchange(ref OneInt, 1) == 1)
-            {
-                return;
-            }
-            await DisplayGetNextImageWithoutCheck(1);
-            OneInt = 0;
+            await DisplayGetNextImage(1);
         }
 
         private async Task DisplayGetNextImage(int i)

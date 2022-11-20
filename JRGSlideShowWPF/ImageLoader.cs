@@ -95,7 +95,7 @@ namespace JRGSlideShowWPF
             string searchString = "*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tif;*.tiff;*.webp";
             InfoTextBoxClass.messageDisplayStart("Finding " + searchString + "...", -1, true, false);            
             GetFiles(SlideShowDirectory, searchString, NewImageList);
-            InfoTextBoxClass.messageDisplayStart(NewImageList.Count + " images found.", 5);            
+            InfoTextBoxClass.messageDisplayStart(NewImageList.Count + " images found.", 5, false, true);            
         }
         
         
@@ -112,7 +112,7 @@ namespace JRGSlideShowWPF
             do
             {
                 string currentDir = dirs.Pop();
-                InfoTextBoxClass.messageDisplayStart("Scanning directories..." + currentDir + Environment.NewLine + "Images found: " + NewImageList.Count, -1, true, false);
+                InfoTextBoxClass.messageDisplayStart("Scanning directories..." + currentDir + Environment.NewLine + "Images found: " + NewImageList.Count, -1, false, true);
                 try
                 {
                     string[] subDirs = Directory.GetDirectories(currentDir);
@@ -128,7 +128,7 @@ namespace JRGSlideShowWPF
                     {
                         if (StartGetFiles_Cancel)
                         {
-                            InfoTextBoxClass.messageDisplayStart("Scanning directories canceled... " + NewImageList.Count, -1, true, false);
+                            InfoTextBoxClass.messageDisplayStart("Scanning directories canceled... " + NewImageList.Count, -1, false, true);
                             NewImageList.Clear();
                             return;
                         }                        
@@ -139,7 +139,7 @@ namespace JRGSlideShowWPF
                         if (NextListUpdate > 100)
                         {
                             NextListUpdate = 0;
-                            InfoTextBoxClass.messageDisplayStart("Scanning directories..." + currentDir + Environment.NewLine + "Images found: " + NewImageList.Count, -1, true, false);
+                            InfoTextBoxClass.messageDisplayStart("Scanning directories..." + currentDir + Environment.NewLine + "Images found: " + NewImageList.Count, -1, false, true);
                         }
                     }
                 }
