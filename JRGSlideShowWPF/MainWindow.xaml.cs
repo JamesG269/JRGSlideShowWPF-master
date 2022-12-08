@@ -96,7 +96,7 @@ namespace JRGSlideShowWPF
             Starting = false;
             await DisplayGetNextImageWithoutCheck(1);
             EnableMotd();
-            Play(true);
+            Play();
             MouseInitTimer();            
         }
         
@@ -107,7 +107,7 @@ namespace JRGSlideShowWPF
             SetDisplayMode();                      
         }
         
-        private void Play(bool PlayNow = false)
+        private void Play()
         {
             if (ImageListReady == false)
             {

@@ -92,8 +92,8 @@ namespace JRGSlideShowWPF
             {
                 return;
             }
-            string searchString = "*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tif;*.tiff;*.webp";
-            InfoTextBoxClass.messageDisplayStart("Finding " + searchString + "...", -1, true, false);            
+            string searchString = "*.jpg;*.jpeg;*.jpe;*.jif;*.jfif;*.jfi;*.png;*.bmp;*.gif;*.tif;*.tiff;*.webp";
+            InfoTextBoxClass.messageDisplayStart("Finding " + searchString + "...", -1, false, true);            
             GetFiles(SlideShowDirectory, searchString, NewImageList);
             InfoTextBoxClass.messageDisplayStart(NewImageList.Count + " images found.", 5, false, true);            
         }
