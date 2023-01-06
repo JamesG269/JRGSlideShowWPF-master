@@ -26,7 +26,7 @@ namespace JRGSlideShowWPF
             IsUserjgentile = String.Compare(Environment.UserName, "jgentile", true) == 0;
             GCSettings.LatencyMode = GCLatencyMode.LowLatency;
             PSource = PresentationSource.FromVisual(this);
-            thisHandle = new WindowInteropHelper(this).Handle;
+            thisHandle = new WindowInteropHelper(this).Handle;            
             progressBar.Visibility = Visibility.Hidden;
             InfoBlockControl.Visibility = Visibility.Hidden;
             MotdBlockControl.Visibility = Visibility.Hidden;
@@ -40,7 +40,8 @@ namespace JRGSlideShowWPF
             }
             else
             {
-                await Task.Run(() => StartGetFiles());                
+                await Task.Run(() => StartGetFiles());
+                await DisplayGetNextImage(1);
             }            
         }
         public void InitMotd()
@@ -57,7 +58,7 @@ namespace JRGSlideShowWPF
             };
         }
 
-        private bool InitAndClosePrevious()
+        private bool ClosePrevious()
         {
             InitRNGKeys();
             Process[] processlist = Process.GetProcessesByName("JRGSlideShowWPF");

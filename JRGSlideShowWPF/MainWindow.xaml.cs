@@ -83,7 +83,7 @@ namespace JRGSlideShowWPF
         public async void Window_ContentRendered(object sender, EventArgs e)
         {
             Starting = true;
-            bool result = await Task.Run(() => InitAndClosePrevious());
+            bool result = await Task.Run(() => ClosePrevious());
             if (result == false)
             {
                 Close();
@@ -94,12 +94,11 @@ namespace JRGSlideShowWPF
             NotifyStart();
             await InitSlideShow();            
             Starting = false;
-            await DisplayGetNextImageWithoutCheck(1);
             EnableMotd();
             Play();
             MouseInitTimer();            
         }
-        
+
         public bool ShowPicture = false;
         private void Stop()
         {
