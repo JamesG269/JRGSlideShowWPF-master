@@ -131,7 +131,7 @@ namespace JRGSlideShowWPF
             {
                 await Task.Delay(10);
             }
-            SaveSettingsRegistry();
+            await Task.Run(() => SaveSettingsRegistry());            
             base.OnClosing(e);
         }
 
