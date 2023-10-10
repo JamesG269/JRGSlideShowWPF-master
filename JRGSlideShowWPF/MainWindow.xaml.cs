@@ -55,9 +55,6 @@ namespace JRGSlideShowWPF
         public System.Windows.Threading.DispatcherTimer dispatcherHideCursor;
         public System.Windows.Threading.DispatcherTimer dispatcherTextBoxMessage;
 
-        string SlideShowDirectory;
-
-        Boolean RandomizeImages = true;
         Boolean ImageReadyToDisplay = false;
 
         int ImagesNotNull = 0;

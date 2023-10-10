@@ -71,7 +71,7 @@ namespace JRGSlideShowWPF
 
             } while (ImageIdxList[ImageIdxListPtr] == -1);
         }
-        bool ShowMotd = false;
+        
         private async Task DisplayCurrentImage()
         {
             if (ImageReadyToDisplay == true)

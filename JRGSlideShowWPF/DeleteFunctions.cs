@@ -99,10 +99,8 @@ namespace JRGSlideShowWPF
             }
             var fileName = ImageList[ImageIdxList[ImageIdxListDeletePtr]].FullName;
             bool result = true;
-            if (!IsUserjgentile)
-            {
-                result = MessageBox.Show("Confirm delete: " + fileName, "Confirm delete image.", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
-            }
+            result = MessageBox.Show("Confirm delete: " + fileName, "Confirm delete image.", MessageBoxButton.YesNo) == MessageBoxResult.Yes;
+            
             if (result)
             {
                 try

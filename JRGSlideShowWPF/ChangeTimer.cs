@@ -15,12 +15,8 @@ namespace JRGSlideShowWPF
 {
     public partial class MainWindow : Window
     {
-        private async void ChangeTimerCode()
-        {
-            while (0 != Interlocked.Exchange(ref OneInt, 1))
-            {
-                await Task.Delay(10);
-            }
+        private void ChangeTimerCode()
+        {            
             bool ShowPictureBackup = dispatcherPlaying.IsEnabled;
             Stop();
             SlideShowTimer SlideShowTimerWindow = new SlideShowTimer
@@ -33,10 +29,10 @@ namespace JRGSlideShowWPF
             SlideShowTimerWindow.ShowDialog();
 
             TimerSeconds = int.Parse(SlideShowTimerWindow.TimerTextBox.Text);
+            
             dispatcherPlaying.Interval = new TimeSpan(0, 0, 0, TimerSeconds, 0);
 
-            Activate();
-            OneInt = 0;
+            Activate();            
             if (ShowPictureBackup == true)
             {
                 Play();

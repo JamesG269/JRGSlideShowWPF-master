@@ -12,6 +12,9 @@ namespace JRGSlideShowWPF
         public RegistryKey RegKeyCurrent;
         public int TimerSeconds = 5;
         public bool PrivateMode = false;
+        public string SlideShowDirectory;
+        public bool RandomizeImages = true;
+        public bool ShowMotd = false;
         public bool LoadSettingsRegistry()
         {
             bool ret = true;                        

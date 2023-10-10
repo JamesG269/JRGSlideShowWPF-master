@@ -43,9 +43,6 @@ namespace JRGSlideShowWPF
             AllowSleepPausedXaml.IsChecked = AllowMonitorSleepPaused;
             AllowSleepPlayingXaml.IsChecked = AllowMonitorSleepPlaying;
             MotdXaml.IsChecked = ShowMotd;
-
-            
-
         }
         public async Task InitSlideShow()
         {
