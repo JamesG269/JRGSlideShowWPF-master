@@ -29,11 +29,11 @@ namespace JRGSlideShowWPF
                 ResizeMode = ResizeMode.NoResize,
             };
 
-            SlideShowTimerWindow.TimerTextBox.Text = dispatcherPlaying.Interval.Seconds.ToString();
+            SlideShowTimerWindow.TimerTextBox.Text = TimerSeconds.ToString();
             SlideShowTimerWindow.ShowDialog();
 
-            int i = int.Parse(SlideShowTimerWindow.TimerTextBox.Text);
-            dispatcherPlaying.Interval = new TimeSpan(0, 0, 0, i, 0);
+            TimerSeconds = int.Parse(SlideShowTimerWindow.TimerTextBox.Text);
+            dispatcherPlaying.Interval = new TimeSpan(0, 0, 0, TimerSeconds, 0);
 
             Activate();
             OneInt = 0;

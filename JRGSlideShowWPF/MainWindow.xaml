@@ -45,7 +45,7 @@
                 <MenuItem Header="Previous" Click="ContextMenuPrev"/>
                 <MenuItem Header="Delete" Click="ContextMenuDelete"/>
                 <MenuItem Header="Open Folder" Click="ContextMenuOpenFolder"/>
-                <MenuItem Header="Private Mode (disable accidental Google Search)" IsCheckable="True" Name="PrivateModeCheckBox" />
+                <MenuItem Header="Private Mode (disable accidental Google Search)" IsCheckable="True" Name="PrivateModeCheckBox" Checked="PrivateModeCheckBox_Checked" Unchecked="PrivateModeCheckBox_Checked" />
                 <MenuItem Header="Change Timer" Click="ContextMenuChangeTimer"/>
                 <MenuItem Header="Full Screen Toggle" Click="ContextMenuFullScreen"/>
                 <MenuItem Header="Full Screen on Monitor: " Name="MonitorMenu"/>
@@ -57,9 +57,7 @@
                 <MenuItem Header="Allow Monitor sleep while playing." IsCheckable="True" Unchecked="AllowMonitorSleepPlaying_Checked" Checked="AllowMonitorSleepPlaying_Checked" Name="AllowSleepPlayingXaml"/>
                 <MenuItem Header="Allow Monitor sleep while paused." IsCheckable="True" Unchecked="AllowMonitorSleepPaused_Checked" Checked="AllowMonitorSleepPaused_Checked" Name="AllowSleepPausedXaml"/>
                 <MenuItem Header="Allow Monitor sleep in full screen only" IsCheckable="True" Unchecked="AllowMonitorSleepFullScreenOnly_Checked" Checked="AllowMonitorSleepFullScreenOnly_Checked" Name="AllowSleepFullScreenXaml"/>
-
-
-                <MenuItem Header="Enable MOTD" IsCheckable="True" Unchecked="EnableMotd" Checked="EnableMotd" Name="MotdXaml"/>
+                <MenuItem Header="Enable MOTD" IsCheckable="True" Unchecked="EnableMotd" Checked="EnableMotd"  Name="MotdXaml"/>
                 <MenuItem Header="Exit" Click="ContextMenuExit"/>
             </ContextMenu>
         </Grid.ContextMenu>

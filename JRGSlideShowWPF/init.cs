@@ -31,6 +31,21 @@ namespace JRGSlideShowWPF
             InfoBlockControl.Visibility = Visibility.Hidden;
             MotdBlockControl.Visibility = Visibility.Hidden;
 
+            dispatcherPlaying = new System.Windows.Threading.DispatcherTimer();
+            dispatcherPlaying.Stop();
+            dispatcherPlaying.IsEnabled = true;
+            dispatcherPlaying.Interval = new TimeSpan(0, 0, TimerSeconds);
+            dispatcherPlaying.Tick += DisplayNextImageTimer;
+
+            ContextMenuCheckBox.IsChecked = RandomizeImages;
+            PrivateModeCheckBox.IsChecked = PrivateMode;
+            AllowSleepFullScreenXaml.IsChecked = AllowMonitorSleepFullScreenOnly;
+            AllowSleepPausedXaml.IsChecked = AllowMonitorSleepPaused;
+            AllowSleepPlayingXaml.IsChecked = AllowMonitorSleepPlaying;
+            MotdXaml.IsChecked = ShowMotd;
+
+            
+
         }
         public async Task InitSlideShow()
         {
@@ -58,9 +73,13 @@ namespace JRGSlideShowWPF
             };
         }
 
-        private bool ClosePrevious()
+        private bool LoadSettingsAndClosePrevious()
         {
             InitRNGKeys();
+            if (LoadSettingsRegistry() == false)
+            {
+                return false;
+            }
             Process[] processlist = Process.GetProcessesByName("JRGSlideShowWPF");
             var currentProcess = Process.GetCurrentProcess();
             int c = 0;

@@ -29,7 +29,7 @@ namespace JRGSlideShowWPF
 
         private async void GoogleImageSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (PrivateModeCheckBox.IsChecked == true)
+            if (PrivateMode == true)
             {
                 MessageBox.Show("Private Mode is enabled, google search not done.");
                 return;

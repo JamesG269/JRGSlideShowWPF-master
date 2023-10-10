@@ -39,7 +39,6 @@ namespace JRGSlideShowWPF
         {
             if (ImageListReady == true)
             {
-
                 await Task.Run(() => LoadNextImage(i));
                 await DisplayCurrentImage();
             }

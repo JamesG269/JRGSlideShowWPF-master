@@ -83,14 +83,13 @@ namespace JRGSlideShowWPF
         public async void Window_ContentRendered(object sender, EventArgs e)
         {
             Starting = true;
-            bool result = await Task.Run(() => ClosePrevious());
+            bool result = await Task.Run(() => LoadSettingsAndClosePrevious());
             if (result == false)
             {
                 Close();
             }
             InitMotd();
-            InitVars();                       
-            LoadSettings();
+            InitVars();                                   
             NotifyStart();
             await InitSlideShow();            
             Starting = false;
@@ -132,14 +131,14 @@ namespace JRGSlideShowWPF
             {
                 await Task.Delay(10);
             }
-            SaveSettings();
+            SaveSettingsRegistry();
             base.OnClosing(e);
         }
 
         private void EnableMotd(object sender, RoutedEventArgs e)
         {
             ShowMotd = MotdXaml.IsChecked;
-            if (MotdXaml.IsChecked == true)
+            if (ShowMotd == true)
             {
                 EnableMotd();               
             }
@@ -147,6 +146,11 @@ namespace JRGSlideShowWPF
             {
                 MotdClass.messageDisplayEndUninterruptable(new Action(() => { MotdClass.textBlock.Visibility = Visibility.Hidden; }));
             }
+        }
+
+        private void PrivateModeCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            PrivateMode = PrivateModeCheckBox.IsChecked;
         }
     }
 }

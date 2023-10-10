@@ -17,7 +17,7 @@ namespace JRGSlideShowWPF
     {
         private async Task CopyDeleteWorker()
         {
-            if (PrivateModeCheckBox.IsChecked == true)
+            if (PrivateMode == true)
             {
                 MessageBox.Show("Private Mode is enabled, copy not done.");
                 return;
