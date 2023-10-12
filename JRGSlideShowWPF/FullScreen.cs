@@ -76,7 +76,7 @@ namespace JRGSlideShowWPF
             {
                 SetCursorTime();
             }
-            SetDisplayMode();
+            SetDisplaySleepMode();
             Interlocked.Exchange(ref inScreenChange, 0);
         }
 
@@ -97,7 +97,7 @@ namespace JRGSlideShowWPF
                 }
                 isMaximized = false;
                 Activate();                
-                SetDisplayMode();
+                SetDisplaySleepMode();
             }
             Interlocked.Exchange(ref inScreenChange, 0);
         }

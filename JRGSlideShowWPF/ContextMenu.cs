@@ -251,19 +251,19 @@ namespace JRGSlideShowWPF
         private void AllowMonitorSleepPlaying_Checked(object sender, RoutedEventArgs e)
         {
             AllowMonitorSleepPlaying = AllowSleepPlayingXaml.IsChecked;
-            SetDisplayMode();
+            SetDisplaySleepMode();
         }
 
         private void AllowMonitorSleepPaused_Checked(object sender, RoutedEventArgs e)
         {
             AllowMonitorSleepPaused = AllowSleepPausedXaml.IsChecked;
-            SetDisplayMode();
+            SetDisplaySleepMode();
         }
 
         private void AllowMonitorSleepFullScreenOnly_Checked(object sender, RoutedEventArgs e)
         {
             AllowMonitorSleepFullScreenOnly = AllowSleepFullScreenXaml.IsChecked;
-            SetDisplayMode();
+            SetDisplaySleepMode();
         }
     }
 }

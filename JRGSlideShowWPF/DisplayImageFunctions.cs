@@ -110,11 +110,11 @@ namespace JRGSlideShowWPF
         }
         int LastDisplayMode = 0;
 
-        private void SetDisplayMode()
+        private void SetDisplaySleepMode()
         {
             if (AllowMonitorSleepFullScreenOnly == false || (AllowMonitorSleepFullScreenOnly == true && isMaximized == true))
             {
-                SetDisplayModeCheckPlay();
+                SetDisplaySleepModeCheckPlay();
             }
             else
             {
@@ -123,7 +123,7 @@ namespace JRGSlideShowWPF
             }
             updateInfo();
         }
-        private void SetDisplayModeCheckPlay()
+        private void SetDisplaySleepModeCheckPlay()
         {
             if (AllowMonitorSleepPlaying && dispatcherPlaying.IsEnabled)
             {

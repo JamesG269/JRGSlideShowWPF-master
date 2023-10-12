@@ -99,7 +99,7 @@ namespace JRGSlideShowWPF
         private void Stop()
         {
             dispatcherPlaying.Stop();
-            SetDisplayMode();                      
+            SetDisplaySleepMode();                      
         }
         
         private void Play()
@@ -112,18 +112,18 @@ namespace JRGSlideShowWPF
             {
                 dispatcherPlaying.Start();                                               
             }
-            SetDisplayMode();
+            SetDisplaySleepMode();
         }
         
         protected override async void OnClosing(CancelEventArgs e)
         {
-            _cancelTokenSource.Cancel();
-            Stop();
             if (NIcon != null)
             {
                 NIcon.Dispose();
                 NIcon = null;
             }
+            _cancelTokenSource.Cancel();
+            Stop();            
             while (0 != Interlocked.Exchange(ref OneInt, 1))
             {
                 await Task.Delay(10);

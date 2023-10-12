@@ -101,13 +101,13 @@ namespace JRGSlideShowWPF
                 Show();                
                 isMinimized = false;                
                 Activate();
-                SetDisplayMode();
+                SetDisplaySleepMode();
             }
             else
             {               
                 Hide();
                 isMinimized = true;
-                SetDisplayMode();
+                SetDisplaySleepMode();
             }
         }
         public void BuildNotify()
