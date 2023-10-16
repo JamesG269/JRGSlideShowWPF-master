@@ -24,7 +24,6 @@ namespace JRGSlideShowWPF
         {
             await DisplayGetNextImage(1);
         }
-
         private async Task DisplayGetNextImage(int i)
         {
             if (1 == Interlocked.Exchange(ref OneInt, 1))
@@ -71,41 +70,42 @@ namespace JRGSlideShowWPF
 
             } while (ImageIdxList[ImageIdxListPtr] == -1);
         }
-        
+
         private async Task DisplayCurrentImage()
         {
-            if (ImageReadyToDisplay == true)
+            if (ImageReadyToDisplay == false)
             {
-                bool dispatcherPlayingEnabled = dispatcherPlaying.IsEnabled;
-                if (dispatcherPlayingEnabled)
-                {
-                    dispatcherPlaying.Stop();
-                }
-                if (ImageError == false)
-                {
-                    ImageIdxListDeletePtr = -1;
-                    ImageControl.Source = displayPhoto;
-                    imageTimeToDecode.Stop();
-                    ImageIdxListDeletePtr = ImageIdxListPtr;
-                    ImageReadyToDisplay = false;
-                    imagesDisplayed++;
-                    updateInfo();
-                    PutMotd();
-                }
-                else
-                {
-                    InfoTextBoxClass.messageDisplayStart(ErrorMessage, 5, false, false);
+                return;
+            }
+            bool dispatcherPlayingEnabled = dispatcherPlaying.IsEnabled;
+            if (dispatcherPlayingEnabled)
+            {
+                dispatcherPlaying.Stop();
+            }
+            if (ImageError == false)
+            {
+                ImageIdxListDeletePtr = -1;
+                ImageControl.Source = displayPhoto;
+                imageTimeToDecode.Stop();
+                ImageIdxListDeletePtr = ImageIdxListPtr;
+                ImageReadyToDisplay = false;
+                imagesDisplayed++;
+                updateInfo();
+                PutMotd();
+            }
+            else
+            {
+                InfoTextBoxClass.messageDisplayStart(ErrorMessage, 5, false, false);
 
-                    if (IsUserjgentile)                                                         // delete the picture if it has display errors *and* user is the author
-                    {
-                        //await DeleteNoInterlock(true);
-                        await Task.Delay(1);
-                    }
-                }
-                if (dispatcherPlayingEnabled)
+                if (IsUserjgentile)                                                         // delete the picture if it has display errors *and* user is the author
                 {
-                    dispatcherPlaying.Start();
+                    //await DeleteNoInterlock(true);
+                    await Task.Delay(1);
                 }
+            }
+            if (dispatcherPlayingEnabled)
+            {
+                dispatcherPlaying.Start();
             }
         }
         int LastDisplayMode = 0;
