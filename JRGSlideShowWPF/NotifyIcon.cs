@@ -78,7 +78,6 @@ namespace JRGSlideShowWPF
         private void NotifyStart()
         {
             NIcon = new NotifyIcon();
-
             Uri cdico = new Uri(@"/cd.ico", UriKind.Relative);
             Stream IconStream = System.Windows.Application.GetResourceStream(cdico).Stream;
             NIcon.Icon = new Icon(IconStream);
