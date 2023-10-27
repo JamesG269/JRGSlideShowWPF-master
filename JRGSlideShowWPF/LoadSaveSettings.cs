@@ -59,7 +59,7 @@ namespace JRGSlideShowWPF
                     RegKeyCurrent.SetValue("ShowMOTD", ShowMotd == false ? 0 : 1, RegistryValueKind.DWord);
                     RegKeyCurrent.Close();
                     ret = true;
-                }                
+                }                  
             }
             catch { }
             if (ret == false)

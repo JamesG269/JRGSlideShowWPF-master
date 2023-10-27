@@ -92,7 +92,7 @@ namespace JRGSlideShowWPF
             Starting = false;
             EnableMotd();
             Play();
-            MouseInitTimer();            
+            MouseInitTimer();
         }
 
         public bool ShowPicture = false;
