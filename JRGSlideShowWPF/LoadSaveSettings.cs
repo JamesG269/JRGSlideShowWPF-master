@@ -15,6 +15,7 @@ namespace JRGSlideShowWPF
         public string SlideShowDirectory;
         public bool RandomizeImages = true;
         public bool ShowMotd = false;
+        public bool setToMax = false;
         public bool LoadSettingsRegistry()
         {
             bool ret = true;                        
@@ -31,13 +32,14 @@ namespace JRGSlideShowWPF
                     SlideShowDirectory = RegKeyCurrent.GetValue("SlideShowFolder", RegistryValueKind.String).ToString();
                     PrivateMode = Convert.ToInt32(RegKeyCurrent.GetValue("PrivateMode", RegistryValueKind.DWord)) == 0 ? false : true;                    
                     ShowMotd = Convert.ToInt32(RegKeyCurrent.GetValue("ShowMOTD", RegistryValueKind.DWord)) == 0 ? false : true;
-                    RegKeyCurrent.Close();
+                    setToMax = Convert.ToInt32(RegKeyCurrent.GetValue("isMaximized")) == 0 ? false : true;
+                    RegKeyCurrent.Close();                    
                 }                
             }
             catch
             {
                 MessageBox.Show("Could not access registry keys.");
-                ret = false;
+                //ret = false;
             }            
             return ret;
         }
@@ -57,6 +59,7 @@ namespace JRGSlideShowWPF
                     RegKeyCurrent.SetValue("SlideShowFolder", SlideShowDirectory, RegistryValueKind.String);
                     RegKeyCurrent.SetValue("PrivateMode", PrivateMode == false ? 0 : 1, RegistryValueKind.DWord);
                     RegKeyCurrent.SetValue("ShowMOTD", ShowMotd == false ? 0 : 1, RegistryValueKind.DWord);
+                    RegKeyCurrent.SetValue("isMaximized", isMaximized == false ? 0 : 1, RegistryValueKind.DWord);
                     RegKeyCurrent.Close();
                     ret = true;
                 }                  

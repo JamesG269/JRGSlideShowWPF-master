@@ -84,7 +84,7 @@ namespace JRGSlideShowWPF
             if (result == false)
             {
                 Close();
-            }
+            }            
             InitMotd();
             InitVars();                                   
             NotifyStart();

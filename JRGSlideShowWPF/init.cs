@@ -43,6 +43,10 @@ namespace JRGSlideShowWPF
             AllowSleepPausedXaml.IsChecked = AllowMonitorSleepPaused;
             AllowSleepPlayingXaml.IsChecked = AllowMonitorSleepPlaying;
             MotdXaml.IsChecked = ShowMotd;
+            if (setToMax == true)
+            {
+                GoFullScreen();
+            }
         }
         public async Task InitSlideShow()
         {
